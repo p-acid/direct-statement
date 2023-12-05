@@ -10,7 +10,7 @@ const ThemeButtons = () => {
 
   return (
     <div className="flex gap-2">
-      <Button size="icon" variant="outline" onClick={() => setTheme("light")}>
+      <Button size="icon" onClick={() => setTheme("light")}>
         <SunIcon />
       </Button>
 
