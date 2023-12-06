@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
-import Form from "./src/ui/form"
+import Form from "./src/ui/sign-in-form"
 
 export default function Home() {
   return (
@@ -14,7 +14,7 @@ export default function Home() {
       <Card className="flex w-full max-w-[400px] flex-col justify-center max-md:h-screen max-md:rounded-none">
         <CardHeader className="items-center pb-12 pt-10">
           <CardTitle>이지택스🖨️</CardTitle>
-          <CardDescription>세금명세서를 더 간편하게,</CardDescription>
+          <CardDescription>세금명세서를 더 간편하게</CardDescription>
         </CardHeader>
 
         <CardContent>
