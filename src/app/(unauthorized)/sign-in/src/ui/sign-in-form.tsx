@@ -1,5 +1,8 @@
 "use client"
 
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+
 import { zodResolver } from "@hookform/resolvers/zod"
 import { signIn } from "next-auth/react"
 import { useForm } from "react-hook-form"
@@ -16,6 +19,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { useToast } from "@/components/ui/use-toast"
 
 const formSchema = z.object({
   email: z
@@ -26,6 +30,11 @@ const formSchema = z.object({
 })
 
 const SignInForm = () => {
+  const [loading, setLoading] = useState(false)
+
+  const { push } = useRouter()
+  const { toast } = useToast()
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -34,12 +43,32 @@ const SignInForm = () => {
     },
   })
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    signIn("credentials", {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setLoading(true)
+
+    const res = await signIn("credentials", {
       ...values,
       redirect: false,
       callbackUrl: pageRoute.dashboard,
     })
+
+    if (res) {
+      const { ok, error } = res
+
+      if (!ok) {
+        toast({
+          title: "로그인에 실패했습니다.",
+          description: error,
+        })
+        setLoading(false)
+        return
+      }
+
+      push(pageRoute.dashboard)
+      toast({
+        title: "로그인 되었습니다!",
+      })
+    }
   }
 
   return (
@@ -80,7 +109,7 @@ const SignInForm = () => {
           )}
         />
 
-        <Button className="mt-2" type="submit">
+        <Button className="mt-2" type="submit" disabled={loading}>
           로그인
         </Button>
       </form>

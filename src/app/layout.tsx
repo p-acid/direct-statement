@@ -8,6 +8,8 @@ import { ThemeProvider } from "@/provider/theme-provider"
 
 import "@/styles/global.css"
 
+import { Toaster } from "@/components/ui/toaster"
+
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
@@ -29,7 +31,12 @@ export default function RootLayout({
         <EdgeStoreProvider>
           <TanstackProviders>
             <SessionProvider>
-              <ThemeProvider>{children}</ThemeProvider>
+              <ThemeProvider>
+                <>
+                  {children}
+                  <Toaster />
+                </>
+              </ThemeProvider>
             </SessionProvider>
           </TanstackProviders>
         </EdgeStoreProvider>
