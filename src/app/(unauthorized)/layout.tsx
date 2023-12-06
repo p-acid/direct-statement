@@ -16,7 +16,11 @@ const UnauthorizedLayout = async ({ children }: UnauthorizedLayoutProps) => {
     redirect(pageRoute.dashboard)
   }
 
-  return <div>{children}</div>
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center gap-10 transition-colors">
+      {children}
+    </main>
+  )
 }
 
 export default UnauthorizedLayout
