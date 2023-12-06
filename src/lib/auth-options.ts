@@ -1,5 +1,9 @@
+import { compare } from "bcryptjs"
 import { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
+
+import { pageRoute } from "./page-route"
+import prisma from "./prisma"
 
 const authOptions: NextAuthOptions = {
   providers: [
@@ -21,11 +25,27 @@ const authOptions: NextAuthOptions = {
         },
       },
       async authorize(credentials) {
-        if (!credentials) throw new Error()
-        return { id: "EXAMPLE", ...credentials }
+        if (!credentials) throw new Error("오류가 발생했습니다.")
+
+        const { email, password } = credentials
+
+        const user = await prisma.user.findFirst({
+          where: {
+            email,
+          },
+        })
+
+        if (!user) throw new Error("존재하지 않는 아이디입니다.")
+
+        const result = await compare(password, user.token)
+
+        if (!result) throw new Error("패스워드가 일치하지 않습니다.")
+
+        return user as any
       },
     }),
   ],
+  pages: { signIn: pageRoute.signIn },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async signIn(userDetail) {
@@ -37,13 +57,18 @@ const authOptions: NextAuthOptions = {
     },
 
     async redirect({ baseUrl }) {
-      return `${baseUrl}/redirect`
+      return `${baseUrl}/${pageRoute.dashboard}`
     },
 
     async session({ session }) {
-      /**
-       * Here you can customize the session and store additional values ​​in the session.
-       */
+      const user = await prisma.user.findFirst({
+        where: {
+          email: session.user.email,
+        },
+      })
+
+      session.user = { ...session.user, ...user }
+
       return session
     },
   },
