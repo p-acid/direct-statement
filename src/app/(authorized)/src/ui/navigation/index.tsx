@@ -19,10 +19,10 @@ const Navigation = () => {
   }
 
   return (
-    <nav className="flex w-full items-center justify-between px-6 py-4">
+    <nav className="flex w-full items-center justify-between border-b border-zinc-800 px-6 py-4">
       <Link
         href={pageRoute.dashboard}
-        className="text-lg font-bold tracking-tighter"
+        className="animate-underline text-xl font-bold tracking-tighter"
       >
         EASY<strong className="text-green-400">TAX.</strong>
       </Link>
