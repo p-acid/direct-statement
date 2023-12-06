@@ -1,9 +1,11 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
+import { signIn } from "next-auth/react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
+import { pageRoute } from "@/lib/page-route"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -33,7 +35,11 @@ const SignInForm = () => {
   })
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values)
+    signIn("credentials", {
+      ...values,
+      redirect: false,
+      callbackUrl: pageRoute.dashboard,
+    })
   }
 
   return (
@@ -63,7 +69,11 @@ const SignInForm = () => {
             <FormItem>
               <FormLabel>비밀번호</FormLabel>
               <FormControl>
-                <Input placeholder="비밀번호를 입력하세요." {...field} />
+                <Input
+                  type="password"
+                  placeholder="비밀번호를 입력하세요."
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
