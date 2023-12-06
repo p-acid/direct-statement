@@ -39,7 +39,7 @@ const SignInForm = () => {
   return (
     <Form {...form}>
       <form
-        className="flex w-[400px] flex-col gap-3"
+        className="flex w-full flex-col gap-3"
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <FormField
