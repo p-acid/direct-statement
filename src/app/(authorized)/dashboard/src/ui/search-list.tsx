@@ -9,7 +9,7 @@ import { apiRoute } from "@/lib/api-route"
 import api from "@/lib/axios/base"
 import { getDynamicRoute } from "@/lib/utils"
 
-import DashboardCompany from "../company"
+import DashboardCompany from "./company"
 
 const DashboardSearchList = () => {
   const searchParams = useSearchParams()
