@@ -1,5 +1,6 @@
 import { ReactNode } from "react"
 
+import dayjs from "dayjs"
 import {
   AtSign,
   Building,
@@ -10,6 +11,7 @@ import {
   PenSquare,
 } from "lucide-react"
 
+import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
@@ -18,16 +20,40 @@ import { Separator } from "@/components/ui/separator"
 interface SheetBadgeProps {
   children: ReactNode
   icon: LucideIcon
+  active?: boolean
 }
 
-const SheetBadge = ({ children, icon: SheetBadgeIcon }: SheetBadgeProps) => (
+const SheetBadge = ({
+  children,
+  icon: SheetBadgeIcon,
+  active,
+}: SheetBadgeProps) => (
   <Badge className="flex gap-[6px] px-3 font-light" variant="outline">
-    <SheetBadgeIcon className="w-3 text-emerald-300" />
+    <SheetBadgeIcon
+      className={cn("w-3 text-emerald-300", {
+        "text-zinc-500": !active,
+      })}
+    />
     {children}
   </Badge>
 )
 
-const DashboardSheet = () => {
+interface DashboardCompanyProps {
+  name: string
+  statementCount: number
+  email?: string
+  lastPublicationDate?: string
+}
+
+const DashboardCompany = ({
+  name,
+  statementCount,
+  email,
+  lastPublicationDate,
+}: DashboardCompanyProps) => {
+  const hasStatement = statementCount > 0
+  const hasEmail = !!email
+
   return (
     <Card className="cursor-pointer">
       <CardHeader className="flex flex-col gap-3 space-y-0">
@@ -35,17 +61,27 @@ const DashboardSheet = () => {
           <Building className="h-10 w-10 rounded-full bg-emerald-950 p-[10px]" />
 
           <div>
-            <p className="text-lg font-medium text-zinc-100">일산하이테크</p>
+            <p className="text-lg font-medium text-zinc-100">{name}</p>
             <div className="flex items-center gap-[6px] text-xs text-zinc-200">
               <CalendarPlus className="w-[14px]" />
-              최근 발행 <p className="text-zinc-400">2023년 12월 06일</p>
+              최근 발행
+              <p className="text-zinc-400">
+                {lastPublicationDate
+                  ? dayjs(lastPublicationDate).format("YYYY년 MM월 DD일")
+                  : "이력 없음"}
+              </p>
             </div>
           </div>
         </div>
 
         <div className="flex flex-wrap gap-[6px]">
-          <SheetBadge icon={FileSpreadsheet}>3건의 명세서</SheetBadge>
-          <SheetBadge icon={AtSign}>omhightech13@naver.com</SheetBadge>
+          <SheetBadge active={hasStatement} icon={FileSpreadsheet}>
+            {hasStatement ? `${statementCount}건의 명세서` : "명세서 없음"}
+          </SheetBadge>
+
+          <SheetBadge active={hasEmail} icon={AtSign}>
+            {hasEmail ? email : "이메일 없음"}
+          </SheetBadge>
         </div>
       </CardHeader>
 
@@ -65,4 +101,4 @@ const DashboardSheet = () => {
   )
 }
 
-export default DashboardSheet
+export default DashboardCompany
