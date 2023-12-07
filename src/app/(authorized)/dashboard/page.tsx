@@ -1,13 +1,11 @@
-import { getServerAccount } from "@/app/api/auth/action"
+import DashboardSearchForm from "./src/ui/search-form"
+import DashboardSearchList from "./src/ui/search-list"
 
 const Dashboard = async () => {
-  const account = await getServerAccount()
-
   return (
-    <div>
-      <p>로그인 된 유저</p>
-      <p>유저명: {account?.user.name}</p>
-      <p>이메일: {account?.user.email}</p>
+    <div className="flex flex-col gap-5 p-6">
+      <DashboardSearchForm />
+      <DashboardSearchList />
     </div>
   )
 }
