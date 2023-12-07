@@ -20,7 +20,7 @@ const AuthorizedLayout = async ({ children }: AuthorizedLayoutProps) => {
   return (
     <main>
       <Navigation />
-      <section className="mx-auto w-full max-w-[1080px]">{children}</section>
+      <section className="mx-auto w-full max-w-[800px]">{children}</section>
     </main>
   )
 }
