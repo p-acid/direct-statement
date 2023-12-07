@@ -41,7 +41,7 @@ const SheetBadge = ({
 interface DashboardCompanyProps {
   name: string
   statementCount: number
-  email?: string
+  email: string | null
   lastPublicationDate?: string
 }
 
