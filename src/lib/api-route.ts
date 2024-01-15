@@ -1,3 +1,3 @@
 export const apiRoute = {
-  Search: "/api/search",
+  company: "/api/company",
 } as const

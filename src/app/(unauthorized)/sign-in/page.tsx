@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
-import Form from "./src/ui/sign-in-form"
+import SignInForm from "./src/ui/sign-in-form"
 
 export default function Home() {
   return (
@@ -17,7 +17,7 @@ export default function Home() {
       </CardHeader>
 
       <CardContent>
-        <Form />
+        <SignInForm />
       </CardContent>
     </Card>
   )

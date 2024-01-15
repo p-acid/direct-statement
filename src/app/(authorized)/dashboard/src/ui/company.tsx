@@ -1,4 +1,5 @@
 import { ReactNode } from "react"
+import { useRouter } from "next/navigation"
 
 import dayjs from "dayjs"
 import {
@@ -11,7 +12,8 @@ import {
   PenSquare,
 } from "lucide-react"
 
-import { cn } from "@/lib/utils"
+import { pageRoute } from "@/lib/page-route"
+import { cn, getDynamicRoute } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
@@ -43,6 +45,7 @@ interface DashboardCompanyProps {
   statementCount: number
   email: string | null
   lastPublicationDate?: string
+  onClickWrite: () => void
 }
 
 const DashboardCompany = ({
@@ -50,6 +53,7 @@ const DashboardCompany = ({
   statementCount,
   email,
   lastPublicationDate,
+  onClickWrite,
 }: DashboardCompanyProps) => {
   const hasStatement = statementCount > 0
   const hasEmail = !!email
@@ -88,7 +92,11 @@ const DashboardCompany = ({
       <Separator />
 
       <CardContent className="flex gap-2 p-5">
-        <Button className="flex w-full gap-[6px]" size="sm">
+        <Button
+          className="flex w-full gap-[6px]"
+          size="sm"
+          onClick={onClickWrite}
+        >
           <PenSquare className="w-4" />
           작성하기
         </Button>

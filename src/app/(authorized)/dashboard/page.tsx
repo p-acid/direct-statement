@@ -3,7 +3,7 @@ import DashboardSearchList from "./src/ui/search-list"
 
 const Dashboard = async () => {
   return (
-    <div className="flex flex-col gap-5 p-6">
+    <div className="flex flex-col gap-5">
       <DashboardSearchForm />
       <DashboardSearchList />
     </div>
