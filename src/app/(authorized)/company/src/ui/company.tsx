@@ -1,5 +1,4 @@
 import { ReactNode } from "react"
-import { useRouter } from "next/navigation"
 
 import dayjs from "dayjs"
 import {
@@ -12,8 +11,7 @@ import {
   PenSquare,
 } from "lucide-react"
 
-import { pageRoute } from "@/lib/page-route"
-import { cn, getDynamicRoute } from "@/lib/utils"
+import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
