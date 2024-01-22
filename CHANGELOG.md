@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.0.0 (2024-01-22)
+
+
+### Features
+
+* 대시보드 ([#4](https://github.com/p-acid/easy-tax/issues/4)) ([ed66265](https://github.com/p-acid/easy-tax/commit/ed662658aed3d3db26e2a11d248affcaf98437f7))
+* 대시보드 캘린더 추가 ([#6](https://github.com/p-acid/easy-tax/issues/6)) ([54e0eb5](https://github.com/p-acid/easy-tax/commit/54e0eb56b3eb86ec0edec92884b6116009194527))
+* 로그인 ([#2](https://github.com/p-acid/easy-tax/issues/2)) ([9660e2e](https://github.com/p-acid/easy-tax/commit/9660e2e55ab0b9880d7c2df5b7ba73fe3f3cac5a))
+
+
+### Bug Fixes
+
+* 컨벤션및 스타일 수정 ([d9eecca](https://github.com/p-acid/easy-tax/commit/d9eecca8f94e3820bde10cb05e5bd694a6345259))
+
+
+### Configuration Settings
+
+* DB 스키마 수정 ([8faea8e](https://github.com/p-acid/easy-tax/commit/8faea8e2188ce4ed835b0c2370fa7506fd6efb59))
+* husky 설정 수정 ([d1981e5](https://github.com/p-acid/easy-tax/commit/d1981e552ad9257d3f50664c6376762e74cad363))
+
 ## [1.0.2](https://github.com/p-acid/next-app-router-template/compare/v1.0.1...v1.0.2) (2023-10-31)
 
 
