@@ -10,6 +10,7 @@ async function main() {
       email: "test@naver.com",
       token: "$2a$12$n.X/bznSecOEiczpO7KznurCMP11JtMI9w7CxTI4J.8YYPhUb0xQ.",
       name: "테스트",
+      thumbnail: faker.image.avatar(),
     },
   })
 
