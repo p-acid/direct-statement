@@ -13,6 +13,7 @@ model User {
   email      String     @unique
   token      String
   name       String
+  thumbnail  String
   businesses Business[]
   companies  Company[]
 }

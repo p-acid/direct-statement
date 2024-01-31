@@ -1,22 +1,12 @@
-"use client"
-
 import Link from "next/link"
 
-import { signOut } from "next-auth/react"
-
 import { pageRoute } from "@/lib/page-route"
-import { Button } from "@/components/ui/button"
-import { useToast } from "@/components/ui/use-toast"
+import { getServerAccount } from "@/app/api/auth/action"
 
-const Navigation = () => {
-  const { toast } = useToast()
+import MyAccount from "./my-account"
 
-  const onSignOut = () => {
-    signOut()
-    toast({
-      title: "로그아웃 되었습니다!",
-    })
-  }
+const Navigation = async () => {
+  const account = await getServerAccount()
 
   return (
     <nav className="flex w-full items-center justify-between border-b border-zinc-800 px-6 py-4">
@@ -27,9 +17,10 @@ const Navigation = () => {
         EASY<strong className="text-green-400">TAX.</strong>
       </Link>
 
-      <Button variant="ghost" onClick={onSignOut}>
-        로그아웃
-      </Button>
+      <MyAccount
+        name={account?.user.name}
+        thumbnail={account?.user.thumbnail}
+      />
     </nav>
   )
 }
