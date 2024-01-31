@@ -42,3 +42,20 @@ export function getDynamicRoute(
 
   return result
 }
+
+export const getPagePaths = <K extends string>(
+  base: string,
+  pathObject: Record<K, string | string[]>
+) => {
+  const pagePaths = Object.entries<string | string[]>(pathObject).reduce(
+    (acc, [key, value]) => ({
+      ...acc,
+      [key]: getDynamicRoute(base, {
+        path: typeof value === "string" ? [value] : value,
+      }),
+    }),
+    {}
+  ) as Record<K, string>
+
+  return pagePaths
+}

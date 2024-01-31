@@ -26,7 +26,7 @@ const MyAccount = ({ name, thumbnail }: MyAccountProps) => {
   const { toast } = useToast()
 
   const goMyPage = () => {
-    push(pageRoute.myPage)
+    push(pageRoute.myPage.base)
   }
 
   const onSignOut = () => {
